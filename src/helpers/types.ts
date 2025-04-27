@@ -13,7 +13,6 @@ export interface User {
 
 export interface UserState {
     user: User | null;
-    repos: any[];
     accessToken: string | null;
     loading: boolean;
     error: string | null;

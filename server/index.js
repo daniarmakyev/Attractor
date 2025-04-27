@@ -13,7 +13,7 @@ app.use(cors());
 app.get("/auth/github", (req, res) => {
   const redirect_uri = "http://localhost:3000/";
   res.redirect(
-    `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${redirect_uri}&scope=user`
+    `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${redirect_uri}&scope=user,repo`
   );
 });
 

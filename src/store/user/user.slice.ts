@@ -4,7 +4,6 @@ import { getAccesToken, getUser, updatetUser } from "./user.action";
 
 const INIT: UserState = {
     user: null,
-    repos: [],
     accessToken: null,
     loading: false,
     error: null,
@@ -17,7 +16,6 @@ export const userSlice = createSlice({
         logout: (state) => {
             state.user = null;
             state.accessToken = null;
-            state.repos = [];
             state.error = null;
             localStorage.removeItem("github_access_token");
         },
