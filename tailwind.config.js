@@ -4,9 +4,6 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: "var(--theme-color-background)",
-        primary: "var(--theme-color-primary)",
-        secondary: "var(--theme-color-secondary)",
         welcomeMainBg: 'rgba(29, 29, 37, 1)',
       },
     },
