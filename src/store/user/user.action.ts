@@ -4,7 +4,41 @@ import axios from "axios";
 export const getAccesToken = createAsyncThunk(
     "user/getAccesToken",
     async (code: string) => {
-        const response = await axios.get(`http://localhost:3002/auth/github/callback?code=${code}`);
-        return response.data;
+        try {
+            const response = await axios.get(`http://localhost:3002/auth/github/callback?code=${code}`);
+
+            if (response.data.access_token) {
+                localStorage.setItem("github_access_token", response.data.access_token);
+                return response.data;
+            } else if (response.data.error === "bad_verification_code") {
+                window.location.href = "/auth/github";
+            }
+        } catch (error) {
+            console.error("Authentication error:", error);
+            throw error
+        }
+    }
+);
+
+export const getUser = createAsyncThunk(
+    "user/getUser",
+    async () => {
+        try {
+            const token = localStorage.getItem("github_access_token");
+
+            const response = await axios.get("https://api.github.com/user", {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+                params: {
+                    type: "all", 
+                },
+            });
+
+            return response.data;
+        } catch (error) {
+            console.error("GetUser error" + error);
+            throw error
+        }
     }
 );
