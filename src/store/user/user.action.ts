@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { User } from "../../helpers/types";
 
 export const getAccesToken = createAsyncThunk(
     "user/getAccesToken",
@@ -31,7 +32,8 @@ export const getUser = createAsyncThunk(
                     Authorization: `Bearer ${token}`,
                 },
                 params: {
-                    type: "all", 
+                    type: "all",
+                    timestamp: new Date().getTime(),
                 },
             });
 
@@ -39,6 +41,27 @@ export const getUser = createAsyncThunk(
         } catch (error) {
             console.error("GetUser error" + error);
             throw error
+        }
+    }
+);
+export const updatetUser = createAsyncThunk(
+    "user/updatetUser",
+    async (data: User) => {
+        try {
+            const token = localStorage.getItem("github_access_token");
+            const response = await axios.patch(
+                "https://api.github.com/user",
+                data,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+            return response.data;
+        } catch (error) {
+            console.error("Error updating user:", error);
+            throw error;
         }
     }
 );
