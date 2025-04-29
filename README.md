@@ -12,7 +12,7 @@
 
 1. Клонировать репозиторий:
 ```bash
-git clone https://github.com/daniarmakyev/Attractor.git .
+git clone https://github.com/daniarmakyev/githubOAuth.git .
 npm install
 npm start
 ```
