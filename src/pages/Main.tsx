@@ -2,7 +2,6 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../helpers/hooks";
 import { getAccesToken } from "../store/user/user.action";
-import mainBg from "../kit/assets/image/blured-bg.svg";
 import githubLogo from "../kit/assets/image/github-mark.png";
 import LoadingSpinner from "../components/LoadingSpinner";
 

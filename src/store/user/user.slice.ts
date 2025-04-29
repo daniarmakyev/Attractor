@@ -1,12 +1,13 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { UserState } from "../../helpers/types";
-import { getAccesToken, getUser, updatetUser } from "./user.action";
+import { getAccesToken, getUser, getUsers, updatetUser } from "./user.action";
 
 const INIT: UserState = {
     user: null,
     accessToken: null,
     loading: false,
     error: null,
+    users:null
 };
 
 export const userSlice = createSlice({
@@ -57,7 +58,18 @@ export const userSlice = createSlice({
             .addCase(updatetUser.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message || "Error";
-            });
+            }).addCase(getUsers.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(getUsers.fulfilled, (state, action) => {
+                state.loading = false;
+                state.users = action.payload || null;
+            })
+            .addCase(getUsers.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message || "Error";
+            })
     },
 });
 

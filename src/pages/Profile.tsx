@@ -1,9 +1,6 @@
-import React, { useActionState, useEffect } from "react";
-import mainBg from "../kit/assets/image/blured-bg.svg";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../helpers/hooks";
 import { getUser, updatetUser } from "../store/user/user.action";
-import { User } from "../helpers/types";
 import ProfileInput from "../components/ProfileInput";
 import LoadingSpinner from "../components/LoadingSpinner";
 

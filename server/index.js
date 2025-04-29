@@ -8,16 +8,14 @@ const CLIENT_SECRET = process.env.CLIENT_SECRET;
 const app = express();
 app.use(cors());
 
-//переадрисовка и принятие стэйта переадресовка на второй авторизация
 
 app.get("/auth/github", (req, res) => {
   const redirect_uri = "http://localhost:3000/";
   res.redirect(
-    `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${redirect_uri}&scope=user,repo`
+    `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${redirect_uri}&scope=repo,user`
   );
 });
 
-// переадресовка сюда пост запрос на логин за акцес токеном и кодом забрать код с квери колбэка и сделать гет на получение юезар а потом вернуть его
 
 app.get("/auth/github/callback", async (req, res) => {
   const tokenResponse = await axios.post(

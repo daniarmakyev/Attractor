@@ -53,3 +53,12 @@ export const updatetUser = createAsyncThunk(
     }
   }
 );
+
+export const getUsers = createAsyncThunk("user/getUsers", async(name:string) => {
+    try {
+        const data = await axios.get(`https://api.github.com/search/users?q=${name}`)
+        return data.data
+    } catch (error) {
+        console.error("Get users errror:" , error)
+    }
+})

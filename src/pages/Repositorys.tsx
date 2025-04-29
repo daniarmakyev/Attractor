@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../helpers/hooks";
 import { getPrivateRepos, getPublicRepos } from "../store/repos/repos.action";
 import RepoCard from "../components/RepoCard";
@@ -12,17 +12,14 @@ const Repositorys = () => {
     loading,
   } = useAppSelector((state) => state.repos);
   const [activeTab, setActiveTab] = useState<"public" | "private">("public");
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 6;
 
   useEffect(() => {
-    dispatch(getPublicRepos({ page: currentPage, per_page: itemsPerPage }));
-    dispatch(getPrivateRepos({ page: currentPage, per_page: itemsPerPage }));
-  }, [dispatch, currentPage]);
+    dispatch(getPublicRepos());
+    dispatch(getPrivateRepos());
+  }, [dispatch]);
 
   const handleTabChange = (tab: "public" | "private") => {
     setActiveTab(tab);
-    setCurrentPage(1);
   };
 
   const currentRepos = activeTab === "public" ? publicRepos : privateRepos;
@@ -64,28 +61,6 @@ const Repositorys = () => {
                     />
                   </div>
                 ))}
-              </div>
-
-              <div className="flex justify-center gap-2 mt-4">
-                <button
-                  onClick={() =>
-                    setCurrentPage((prev) => Math.max(prev - 1, 1))
-                  }
-                  disabled={currentPage === 1}
-                  className="px-4 py-2 border border-white rounded-md disabled:opacity-50 disabled:cursor-not-allowed hover:bg-white hover:text-black transition-colors"
-                >
-                  Назад
-                </button>
-                <span className="flex items-center px-4">
-                  Страница {currentPage}
-                </span>
-                <button
-                  onClick={() => setCurrentPage((prev) => prev + 1)}
-                  disabled={currentRepos.length < itemsPerPage}
-                  className="px-4 py-2 border border-white rounded-md disabled:opacity-50 disabled:cursor-not-allowed hover:bg-white hover:text-black transition-colors"
-                >
-                  Вперед
-                </button>
               </div>
             </>
           )}
