@@ -12,14 +12,13 @@
 
 1. Клонировать репозиторий:
 ```bash
-git clone https://github.com/daniarmakyev/Attractor.git gitOAuthReact
-cd gitOAuthReact
+git clone https://github.com/daniarmakyev/Attractor.git .
 npm install
 npm start
 ```
 ## Откройте еще один терминал в нынешней директории
+#ОБЯЗАТЕЛЬНО ОСВОБОДИТЕ ЛОКАЛЬНЫЙ 3002 ПОРТ
 ```bash
-ОБЯЗАТЕЛЬНО ОСВОБОДИТЕ ЛОКАЛЬНЫЙ 3002 ПОРТ
 cd server
 npm install
 node index.js
