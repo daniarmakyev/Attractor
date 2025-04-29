@@ -12,7 +12,8 @@
 
 1. Клонировать репозиторий:
 ```bash
-git clone https://github.com/daniarmakyev/Attractor.git .
+git clone https://github.com/daniarmakyev/Attractor.git gitOAuthReact
+cd gitOAuthReact
 npm install
 npm start
 ```
