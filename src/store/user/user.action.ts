@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { api } from "../../helpers/api";
+import  api  from "../../helpers/api";
 import axios from "axios";
 import { User } from "../../helpers/types";
 
@@ -32,7 +32,9 @@ export const getUser = createAsyncThunk(
           timestamp: new Date().getTime(),
         },
       });
-
+      if(response.status === 401){
+        window.location.reload()
+      }
       return response.data;
     } catch (error) {
       console.error("GetUser error:", error);
